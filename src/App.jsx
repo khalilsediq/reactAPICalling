@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className='min-h-screen bg-gray-100 p-8 font-sans'>
       <h1 className='text-3xl font-bold text-center mb-8 text-gray-800'>
-        My Shop
+        My Personal Shop
       </h1>
 
       {loading && (
@@ -45,66 +45,58 @@ const App = () => {
             return (
               <div
                 key={item.id}
-                className='bg-white border border-gray-200 rounded-md overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer flex flex-col'
+                className='bg-white border border-gray-200 rounded-sm overflow-hidden hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col'
               >
                 {/* Image Section */}
-                <div className='h-48 p-4 flex items-center justify-center bg-white relative'>
-                  {/* Heart Icon Placeholder */}
-                  <div className='absolute top-3 right-3 bg-white p-1.5 rounded-full shadow-sm border border-gray-100 cursor-pointer hover:bg-gray-50'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='w-5 h-5 text-gray-600'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z'
-                      />
-                    </svg>
-                  </div>
-                  
-                  {/* Featured Badge (optional for OLX vibe) */}
-                  <div className='absolute top-3 left-3 bg-yellow-400 text-xs font-bold px-2 py-0.5 rounded text-black'>
-                    FEATURED
-                  </div>
-
+                <div className='h-48 w-full relative bg-gray-100'>
                   <img
                     src={item.image}
                     alt={item.title}
-                    className='h-full w-full object-contain'
+                    className='w-full h-full object-cover'
                   />
+                  {/* Optional: Add a subtle overlay or tag if needed, but keeping it clean for now */}
                 </div>
 
                 {/* Content Section */}
-                <div className='p-3 border-t border-gray-100 flex flex-col flex-grow border-l-4 border-l-yellow-400'>
-                  {/* Price */}
-                  <h3 className='text-xl font-bold text-gray-900'>
-                    $ {item.price}
-                  </h3>
+                <div className='p-3 flex flex-col flex-grow'>
+                  {/* Price and Heart Row */}
+                  <div className='flex justify-between items-start mb-1'>
+                    <h3 className='text-lg font-bold text-gray-900'>
+                      Rs {Math.round(item.price * 100).toLocaleString()} 
+                    </h3>
+                    <button className='text-gray-900 hover:text-red-500 focus:outline-none'>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        strokeWidth={1.5}
+                        stroke='currentColor'
+                        className='w-6 h-6'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z'
+                        />
+                      </svg>
+                    </button>
+                  </div>
 
                   {/* Title */}
-                  <h4 className='text-gray-700 text-sm mt-1 line-clamp-2 leading-snug'>
+                  <h4 className='text-gray-700 text-base font-normal line-clamp-2 leading-snug mb-2'>
                     {item.title}
                   </h4>
 
-                    {/*  Ratings */}
-                    <h5 className='text-gray-700 text-sm mt-1 line-clamp-2 leading-snug' >
-                    {item.rating && (
-                      <span className='flex items-center gap-1'>
-                        <span className='font-bold text-yellow-500'>★ {item.rating.rate}</span>
-                        <span className='text-gray-500 text-xs'>({item.rating.count})</span>
-                      </span>
-                    )}
-                    </h5>
-
-                  {/* Location/Date (Mock data since API doesn't provide it) */}
-                  <div className='mt-auto pt-3 flex justify-between items-end text-[10px] text-gray-400 uppercase'>
-                    <span>Karachi</span>
-                    <span>2 days ago</span>
+                  {/* Spacer to push footer down */}
+                  <div className='mt-auto'>
+                    {/* Location */}
+                    <p className='text-xs text-gray-500 truncate'>
+                      Samanabad, Lahore
+                    </p>
+                    {/* Date */}
+                    <p className='text-xs text-gray-500 mt-1'>
+                      2 weeks ago
+                    </p>
                   </div>
                 </div>
               </div>
