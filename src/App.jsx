@@ -52,6 +52,7 @@ import {useEffect, useState} from  'react'
 const App = () => {
     const [products, setProducts] = useState(null)
     const [loading, setMyloading] = useState(true)
+    const [error, setMyError] = useState(false)
 
     useEffect(()=>{
         fetch('https://fakestoreapi.com/products')
@@ -62,6 +63,7 @@ const App = () => {
         } )
         .catch((err) => {
             console.log(err);            
+            setMyError(true)
         })
         .finally(()=>{
             setMyloading(false)
@@ -78,6 +80,7 @@ const App = () => {
     
     {loading && <h2>Loading..... we value your patience-</h2>}
 
+    {error && <h3>Error Occured, Please try again later</h3>}
     <div style={{
         display: 'flex',
         flexDirection: 'row',
