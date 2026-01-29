@@ -51,6 +51,7 @@ import {useEffect, useState} from  'react'
 
 const App = () => {
     const [products, setProducts] = useState(null)
+    const [loading, setMyloading] = useState(true)
 
     useEffect(()=>{
         fetch('https://fakestoreapi.com/products')
@@ -62,6 +63,9 @@ const App = () => {
         .catch((err) => {
             console.log(err);            
         })
+        .finally(()=>{
+            setMyloading(false)
+        })
     }, [])
 
   return (
@@ -71,15 +75,19 @@ const App = () => {
     }} >
         My shop
     </h1>
+    
+    {loading && <h2>Loading..... we value your patience-</h2>}
+
     <div style={{
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        overflow: 'hidden',
         justifyContent: 'center',
         gap: '20px',
         borderRadius: '30px',
         border: '1px solid black',
-        padding: '3px'
+        padding: '3px',
     }}>
        
     {products && products.map((item)=>{
@@ -90,6 +98,7 @@ const App = () => {
                 padding: '5px, 0px, 5px, 0px',
             border: '2px solid yellow',
             width: '350px',
+        height: '390px'
         }}>
             <img style={{
                 width: '150px',
