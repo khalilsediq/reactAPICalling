@@ -28,9 +28,7 @@ const App = () => {
         {theLoading && <h1>Loading Please Wait...........</h1>}
         {theError && <h1>We Appologize, for the Error Occurence</h1>}
         {theUser && theUser.map((item) => { 
-            return <h4 key={item.id} > {item.title} </h4>
-            
-            
+            return <h4 key={item.id} > {item.title} </h4>         
         })}
 
         </>
